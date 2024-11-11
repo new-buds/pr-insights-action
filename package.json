@@ -1,0 +1,33 @@
+{
+  "name": "pr-insights-action",
+  "version": "0.1.0",
+  "description": "A GitHub Action to discover the metrics of pull requests.",
+  "main": "dist/index.js",
+  "homepage": "https://github.com/new-buds/pr-insights-action",
+  "repository": "git@github.com:new-buds/pr-insights-action.git",
+  "bugs": {
+    "url": "https://github.com/new-buds/pr-insights-action/issues"
+  },
+  "author": "Ao Zhang - 张 傲 <kevinao@kevinao.com>",
+  "license": "GPL-3.0-only",
+  "private": true,
+  "keywords": ["GitHub", "Actions", "Pull Request"],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "rsbuild build",
+    "check": "biome check --write",
+    "format": "biome format --write"
+  },
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@rsbuild/core": "^1.1.0",
+    "@types/node": "^22.9.0",
+    "typescript": "^5.6.3"
+  }
+}

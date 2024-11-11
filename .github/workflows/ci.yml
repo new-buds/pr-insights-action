@@ -1,0 +1,50 @@
+name: CI
+run-name: >
+  ${{ github.workflow }}
+  ${{ github.event_name == 'pull_request' &&
+      format(' - {0} (#{1})', github.event.pull_request.title, github.event.pull_request.number) || '' }}
+  ${{ github.event_name == 'push' && format(' - {0}', github.ref_name) || '' }}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+on:
+  pull_request:
+    branches:
+      - "main"
+      - "release/**"
+
+  push:
+    branches:
+      - "main"
+      - "release/**"
+
+  workflow_dispatch:
+
+jobs:
+  CI:
+    name: Format, Check and Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Format and Check
+        run: pnpm format && pnpm check
+
+      - name: Build
+        run: pnpm build

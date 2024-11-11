@@ -1,0 +1,5 @@
+name: "PR Insights"
+description: "A GitHub Action to discover the metrics of pull requests."
+runs:
+  using: "node20"
+  main: "dist/index.js"

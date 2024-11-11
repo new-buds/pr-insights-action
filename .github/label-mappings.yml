@@ -1,0 +1,26 @@
+# Add 'release' label to any PR where the base branch name starts with `release`
+release:
+  - base-branch: ["^release"]
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+
+source:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "src/**/*"
+
+assets:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "assets/**/*"
+
+support:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".devcontainer/**/*"
+          - ".github/**/*"
+          - ".vscode/**/*"
+          - "*"
